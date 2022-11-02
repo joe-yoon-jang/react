@@ -15,11 +15,10 @@ class HeaderMenu extends Component<HeaderMenuProps>{
     const [count, setCount] = useState('');
     const FuncCount = () => {
         console.log('count', count);
-        return setCount(count + 1);
     }
 
     return(
-            <div className={this.props.className} onClick={FuncCount}>
+            <div className={this.props.className} onClick={FuncCount((count + 1))}>
                 <img className={styles.logo} src={`${process.env.PUBLIC_URL}${this.props.imagePath}`}></img>
                 <div className={`${styles.title} ${styles.dropdown}`}>{this.props.title}</div>
             </div>
