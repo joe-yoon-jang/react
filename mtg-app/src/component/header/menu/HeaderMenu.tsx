@@ -9,18 +9,40 @@ interface HeaderMenuProps{
     title: string;
     imagePath: string;
     className:string;
+    menuItems:Array<string>;
 }
-class HeaderMenu extends Component<HeaderMenuProps>{
-    render(): ReactNode {
-    const [count, setCount] = useState('');
-    const FuncCount = () => {
-        console.log('count', count);
+interface HeaderMenuState{
+  count: number;
+  isOpen: boolean;
+}
+class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState>{
+  constructor(props: any) {
+    super(props);
+    this.state = {count: 0, isOpen:false};
+  }
+  handleToggleMenu():any{
+    this.setState({isOpen: !this.state.isOpen});
+            // <div className={this.props.className} onClick={() => this.handleToggleMenu()}>
+    console.log(this.state.count);
+  }
+  render(): ReactNode {
+    const renderMenu = () =>{
+      if(!this.props.menuItems){
+        return <></>;
+      }
+      return this.props.menuItems.map((menu, index) => <li key={index}>{menu}</li>);
     }
-
     return(
-            <div className={this.props.className} onClick={FuncCount((count + 1))}>
+            <div className={styles.menu} onClick={() => this.handleToggleMenu()}>
                 <img className={styles.logo} src={`${process.env.PUBLIC_URL}${this.props.imagePath}`}></img>
                 <div className={`${styles.title} ${styles.dropdown}`}>{this.props.title}</div>
+                <div
+                  className={`${styles.menuDiv} ${this.state.isOpen === false ? styles.none : ''}`}
+                >
+                  <ol>
+                    {renderMenu()}
+                  </ol>
+                </div>
             </div>
         );
     }

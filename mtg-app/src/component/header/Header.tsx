@@ -12,10 +12,23 @@ class Header extends Component{
             <>
                 <Navbar className={styles.header} >
                     <img className={styles.logo} src={`${process.env.PUBLIC_URL}/img/222.png`}></img>
-                    <HeaderMenu 
+                    <HeaderMenu
                         className={styles.menu}
-                        title="Warhammer 40K" 
+                        title="Warhammer 40K"
                         imagePath="/img/40k.png"
+                        menuItems={['aaa','bbb','ccc']}
+                    />
+                    <HeaderMenu
+                        className={styles.menu}
+                        title="LOA"
+                        imagePath="/img/loa.jpg"
+                        menuItems={['몰루','로아','LOALOALOA']}
+                    />
+                    <HeaderMenu
+                        className={styles.menu}
+                        title="원소술사 간호사"
+                        imagePath="/img/nur.png"
+                        menuItems={['수 간호사','빛의 간호사','어둠간호사']}
                     />
                 </Navbar>
             </>
